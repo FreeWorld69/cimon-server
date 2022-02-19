@@ -2,7 +2,18 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
   "compilerOptions": {
-    "assets": ["**/*.hbs", "**/*.css", "**/*.js"],
-    "watchAssets": true
+    "assets": [
+      { "include": "**/*.hbs","watchAssets": true },
+      { "include": "**/*.js","watchAssets": true },
+      { "include": "**/*.css","watchAssets": true },
+      { "include": "**/*.html","watchAssets": true },
+      { "include": "**/*.png","watchAssets": true },
+      { "include": "**/*.jpg","watchAssets": true },
+      { "include": "**/*.svg","watchAssets": true },
+      { "include": "**/*.eot","watchAssets": true },
+      { "include": "**/*.ttf","watchAssets": true },
+      { "include": "**/*.woff","watchAssets": true },
+      { "include": "**/*.woff2","watchAssets": true }
+    ]
   }
 }

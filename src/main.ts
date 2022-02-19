@@ -10,16 +10,13 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const hbsUtils = hbsUtilsFunc(hbs);
 
+  app.setViewEngine('hbs');
   app.useStaticAssets(path.join(__dirname, './assets'), { prefix: '/src/assets' });
   app.setBaseViewsDir(path.join(__dirname, './views'));
+  hbs.registerPartials(path.join(__dirname, './views/partials'));
+  hbsUtils.registerWatchedPartials(path.join(__dirname, './views/partials'));
 
-
-
-  app.setViewEngine('hbs');
-
-  const partialsDir = path.join(__dirname, './views/partials');
-  hbs.registerPartials(partialsDir);
-  hbsUtils.registerWatchedPartials(partialsDir);
+  // handlebars registering helpers
   hbs.handlebars.registerHelper(handlebarsLayouts(hbs.handlebars));
   hbs.handlebars.registerHelper('helper_name', () => 'helper value');
   hbs.handlebars.registerHelper('loud', (aString) => aString.toUpperCase());
