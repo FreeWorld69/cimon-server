@@ -1,0 +1,21 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "giorgi",
+  "password": "giorgi",
+  "database": "strangeelo",
+  "logging": false,
+  "synchronize": false,
+  "migrationsTableName": "migrations",
+  "migrations": [
+    "dist/src/database/migrations/*.js"
+  ],
+  "entities": [
+    "/home/giorgi/Desktop/strange-back/src/configs/../**/*.entity.{js,ts}"
+  ],
+  "useUTC": true,
+  "cli": {
+    "migrationsDir": "src/database/migration"
+  }
+}
