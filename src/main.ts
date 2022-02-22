@@ -7,6 +7,8 @@ import * as hbsUtilsFunc from 'hbs-utils';
 import * as handlebarsLayouts from 'handlebars-layouts'
 
 async function bootstrap() {
+  //!!!!!! https://swiperjs.com/demos for awesome swiping experience
+  
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const hbsUtils = hbsUtilsFunc(hbs);
 

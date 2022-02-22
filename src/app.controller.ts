@@ -9,30 +9,56 @@ export class AppController {
   @Render('index')
   index() {
     return {
-      first: 'initial text',
-
-      firstname: 'Yehuda',
-      lastname: 'Katz',
-
-      people: [
-        {
-          firstname: 'Nils',
-          lastname: 'Knappmeier',
-        },
-        {
-          firstname: 'Yehuda',
-          lastname: 'Katz',
-        },
-      ],
+      title: 'Home',
     };
   }
 
-  @Get('test')
-  @Render('test/test_view')
-  testingLayout() {
+
+  @Get('/details')
+  @Render('details')
+  details() {
     return {
-      title: 'Layout Test',
-      items: ['apple', 'orange', 'banana'],
+      title: 'Details',
+    };
+  }
+
+
+  @Get('/catalog')
+  @Render('catalog')
+  catalog() {
+    return {
+      title: 'Catalog',
+    };
+  }
+
+  @Get('/notfound')
+  @Render('404')
+  notFound() {
+    return {
+      title: 'Not Found',
+      dontShowHeader:true,
+      dontShowFooter:true,
+    };
+  }
+
+
+  @Get('/signin')
+  @Render('signin')
+  signIn() {
+    return {
+      title: 'Sign in',
+      dontShowHeader:true,
+      dontShowFooter:true,
+    };
+  }
+
+  @Get('/signup')
+  @Render('signup')
+  signUp() {
+    return {
+      title: 'Sign up',
+      dontShowHeader:true,
+      dontShowFooter:true,
     };
   }
 

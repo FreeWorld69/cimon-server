@@ -1,0 +1,210 @@
+.elegant-carousel,
+.elegant-carousel .owl-item {
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+}
+
+.elegant-carousel {
+    display: none;
+    width: 100%;
+    z-index: 1;
+}
+
+.elegant-carousel .owl-stage {
+    position: relative;
+    -ms-touch-action: pan-Y;
+    touch-action: manipulation;
+    -moz-backface-visibility: hidden;
+}
+
+.elegant-carousel .owl-stage:after {
+    content: '.';
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.elegant-carousel .owl-stage-outer {
+    position: relative;
+    overflow: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
+.elegant-carousel .owl-item,
+.elegant-carousel .owl-wrapper {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+}
+
+.elegant-carousel .owl-item {
+    min-height: 1px;
+    float: left;
+    -webkit-backface-visibility: hidden;
+    -webkit-touch-callout: none;
+}
+
+.elegant-carousel .owl-item img {
+    display: block;
+    width: 100%;
+}
+
+.elegant-carousel .owl-dots.disabled,
+.elegant-carousel .owl-nav.disabled {
+    display: none;
+}
+
+.no-js .elegant-carousel,
+.elegant-carousel.owl-loaded {
+    display: block;
+}
+
+.elegant-carousel .owl-dot,
+.elegant-carousel .owl-nav .owl-next,
+.elegant-carousel .owl-nav .owl-prev {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.elegant-carousel .owl-nav button.owl-next,
+.elegant-carousel .owl-nav button.owl-prev,
+.elegant-carousel button.owl-dot {
+    background: 0 0;
+    color: inherit;
+    border: none;
+    padding: 0 !important;
+    font: inherit;
+}
+
+.elegant-carousel.owl-loading {
+    opacity: 0;
+    display: block;
+}
+
+.elegant-carousel.owl-hidden {
+    opacity: 0;
+}
+
+.elegant-carousel.owl-refresh .owl-item {
+    visibility: hidden;
+}
+
+.elegant-carousel.owl-drag .owl-item {
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.elegant-carousel.owl-grab {
+    cursor: grab;
+}
+
+.elegant-carousel.owl-rtl {
+    direction: rtl;
+}
+
+.elegant-carousel.owl-rtl .owl-item {
+    float: right;
+}
+
+.elegant-carousel .animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.elegant-carousel .owl-animated-in {
+    z-index: 0;
+}
+
+.elegant-carousel .owl-animated-out {
+    z-index: 1;
+}
+
+.elegant-carousel .fadeOut {
+    animation-name: fadeOut;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.owl-height {
+    transition: height 0.5s ease-in-out;
+}
+
+.elegant-carousel .owl-item .owl-lazy {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.elegant-carousel .owl-item .owl-lazy:not([src]),
+.elegant-carousel .owl-item .owl-lazy[src^=''] {
+    max-height: 0;
+}
+
+.elegant-carousel .owl-item img.owl-lazy {
+    transform-style: preserve-3d;
+}
+
+.elegant-carousel .owl-video-wrapper {
+    position: relative;
+    height: 100%;
+    background: #000;
+}
+
+.elegant-carousel .owl-video-play-icon {
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    left: 50%;
+    top: 50%;
+    margin-left: -40px;
+    margin-top: -40px;
+    cursor: pointer;
+    z-index: 1;
+    -webkit-backface-visibility: hidden;
+    transition: transform 0.1s ease;
+}
+
+.elegant-carousel .owl-video-play-icon:hover {
+    -ms-transform: scale(1.3, 1.3);
+    transform: scale(1.3, 1.3);
+}
+
+.elegant-carousel .owl-video-playing .owl-video-play-icon,
+.elegant-carousel .owl-video-playing .owl-video-tn {
+    display: none;
+}
+
+.elegant-carousel .owl-video-tn {
+    opacity: 0;
+    height: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: opacity 0.4s ease;
+}
+
+.elegant-carousel .owl-video-frame {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+}
