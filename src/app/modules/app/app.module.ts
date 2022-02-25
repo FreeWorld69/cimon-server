@@ -1,13 +1,13 @@
 import * as path from 'path';
 import { Module } from '@nestjs/common';
-import { AppController } from '../controllers/app.controller';
 import { ThrottlerModule } from "@nestjs/throttler";
 import { JwtModule } from "@nestjs/jwt";
 import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { TypeormConfig } from "../../configs/typeorm";
+import { TypeormConfig } from "../../../configs/typeorm";
 import { MulterModule } from "@nestjs/platform-express";
-import { NetworkModule } from "../network/network.module";
+import { AppController } from "./app.controller";
+import { MovieModule } from "../movies/movie.module";
 
 @Module({
     imports: [
@@ -16,7 +16,9 @@ import { NetworkModule } from "../network/network.module";
         ConfigModule.forRoot({ isGlobal: true }),
         TypeOrmModule.forRoot(TypeormConfig.instance),
         MulterModule.register({ dest: path.join(__dirname, '../../../../', 'upload') }),
-        NetworkModule
+
+        // own modules
+        MovieModule
     ],
     controllers: [AppController],
     providers: [],
