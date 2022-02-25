@@ -4,7 +4,7 @@ import { MoviesApiService } from './services/movie.service';
 
 @Injectable()
 export class NetworkProvider {
-    public lolRemoteService = new Axiosfit<MoviesApiService>()
+    public moviesApiService = new Axiosfit<MoviesApiService>()
         .baseUrl(process.env.MOVIE_API_URL)
         .create(MoviesApiService);
 }

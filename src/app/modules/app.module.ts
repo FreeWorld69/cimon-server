@@ -7,6 +7,7 @@ import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { TypeormConfig } from "../../configs/typeorm";
 import { MulterModule } from "@nestjs/platform-express";
+import { NetworkModule } from "../network/network.module";
 
 @Module({
     imports: [
@@ -15,6 +16,7 @@ import { MulterModule } from "@nestjs/platform-express";
         ConfigModule.forRoot({ isGlobal: true }),
         TypeOrmModule.forRoot(TypeormConfig.instance),
         MulterModule.register({ dest: path.join(__dirname, '../../../../', 'upload') }),
+        NetworkModule
     ],
     controllers: [AppController],
     providers: [],

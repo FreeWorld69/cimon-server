@@ -6,7 +6,12 @@ declare global {
             NODE_ENV: AppDebugMode;
             APP_TITLE: string;
             APP_URL: string;
+
             MOVIE_API_URL: string;
+            MOVIE_API_HEADER_USER_AGENT:string;
+            MOVIE_API_HEADER_X_SOURCE:string;
+            MOVIE_API_HEADER_ORIGIN:string;
+            MOVIE_API_HEADER_REFERER:string;
 
             POSTGRES_HOST: string;
             POSTGRES_DATABASE: string;
