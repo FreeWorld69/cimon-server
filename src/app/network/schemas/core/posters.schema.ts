@@ -1,11 +1,11 @@
-import { Type } from "class-transformer";
+import { Expose, Type } from "class-transformer";
+
+class PostersDataSchema {
+    @Expose({ name: "240" }) public readonly s240?: string
+    @Expose({ name: "blurhash" }) public readonly blurHash?: string
+}
 
 export class PostersSchema {
     @Type(() => PostersDataSchema)
     public readonly data: PostersDataSchema
-}
-
-class PostersDataSchema {
-    public readonly 240?: string
-    public readonly blurhash?: string
 }

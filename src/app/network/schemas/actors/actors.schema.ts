@@ -4,7 +4,7 @@ import { ActorSchema } from "./actor.schema";
 
 export class ActorsSchema {
     @Type(() => ActorSchema)
-    public readonly data?: Array<ActorSchema>
+    public readonly data?: Array<ActorSchema>;
 
     @Type(() => MetaSchema)
     public readonly meta?: MetaSchema;

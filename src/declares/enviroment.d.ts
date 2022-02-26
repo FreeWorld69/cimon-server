@@ -14,6 +14,7 @@ declare global {
             MOVIE_API_HEADER_X_SOURCE: string;
             MOVIE_API_HEADER_ORIGIN: string;
             MOVIE_API_HEADER_REFERER: string;
+            MOVIE_API_SOURCE_PARAM: string;
 
             POSTGRES_HOST: string;
             POSTGRES_DATABASE: string;

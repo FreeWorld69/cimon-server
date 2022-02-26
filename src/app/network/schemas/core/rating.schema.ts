@@ -1,4 +1,4 @@
-import { Type } from "class-transformer";
+import { Expose, Type } from "class-transformer";
 import { RatingItemSchema } from "./rating_item.schema";
 
 export class RatingSchema {
@@ -12,5 +12,6 @@ export class RatingSchema {
     public readonly rotten?: RatingItemSchema;
 
     @Type(() => RatingItemSchema)
-    public readonly metacritic?: RatingItemSchema;
+    @Expose({ name: "metacritic" })
+    public readonly metaCritic?: RatingItemSchema;
 }

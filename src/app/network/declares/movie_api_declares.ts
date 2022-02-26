@@ -1,24 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { GET, HTTP, Interceptors, Param, Path } from '@yggdrasilts/axiosfit';
-import { NetworkInterceptor } from '../interceptor/network.interceptor';
+import { GET, HTTP, Interceptors, Param, Path } from "@yggdrasilts/axiosfit";
+import { NetworkInterceptor } from "../interceptor/network.interceptor";
 import { MovieSchema } from "../schemas/movie/movie.schema";
 import { SeasonFilesSchema } from "../schemas/season/season_files.schema";
 import { ActorsSchema } from "../schemas/actors/actors.schema";
 import { SearchResultsSchema } from "../schemas/seach/search_results.schema";
 
-const movieApiServiceConfig = {
-    usePromises: true,
-    enableAxiosLogger: process.env.NODE_ENV === 'development'
-}
-
-@HTTP('/test', movieApiServiceConfig) @Interceptors(NetworkInterceptor)
-export class MoviesApiService {
+@HTTP('', { usePromises: true })
+@Interceptors(NetworkInterceptor)
+export class MovieApiDeclares {
     @GET('/movies')
     public getMovies(
         @Param('page') page?: string,
+        @Param('per_page') perPage?: string,
         @Param('sort') sort?: string,
         @Param('source') source?: string,
-        @Param('per_page') perPage?: string,
         @Param('filters[init]') filterInit?: string,
         @Param('filters[sort]') filterSort?: string,
         @Param('filters[type]') filterType?: string,
@@ -39,10 +35,10 @@ export class MoviesApiService {
     @GET('/movies/top')
     public getTopMovies(
         @Param('page') page?: string,
+        @Param('per_page') perPage?: string,
         @Param('type') type?: string,
         @Param('source') source?: string,
         @Param('period') period?: string,
-        @Param('per_page') perPage?: string,
         @Param('filters[with_actors]') filterWithActors?: string,
         @Param('filters[with_directors]') filterWithDirectors?: string,
     ): Promise<MovieSchema> { return null; }
@@ -83,14 +79,14 @@ export class MoviesApiService {
 
     @GET('/search')
     public search(
+        @Param('page') page?: string,
+        @Param('per_page') perPage?: string,
+        @Param('source') source?: string,
+        @Param('keywords') keywords?: string,
+        @Param('filters[type]') filterType?: string,
         @Param('movie_filters[keyword]') filterKeyword?: string,
         @Param('movie_filters[init]') filterInit?: string,
         @Param('movie_filters[with_actors]') filterWithActors?: string,
         @Param('movie_filters[with_directors]') filterWithDirectors?: string,
-        @Param('filters[type]') filterType?: string,
-        @Param('keywords') keywords?: string,
-        @Param('page') page?: string,
-        @Param('per_page') perPage?: string,
-        @Param('source') source?: string,
     ): Promise<SearchResultsSchema> { return null; }
 }

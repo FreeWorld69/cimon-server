@@ -1,4 +1,4 @@
-import { Type } from "class-transformer";
+import { Exclude, Type } from "class-transformer";
 import { MetaSchema } from "../core/meta.schema";
 import { CoversSchema } from "../core/covers.schema";
 import { CoverSchema } from "../core/cover.schema";
@@ -16,8 +16,11 @@ import { SeasonsSchema } from "./movie_seasons.schema";
 import { DirectorsSchema } from "./directors.schema";
 
 export class MovieSchema {
-    @Type(() => MovieDataSchema) public readonly data?: Array<MovieDataSchema>;
-    @Type(() => MetaSchema) public readonly meta?: MetaSchema;
+    @Type(() => MovieDataSchema)
+    public readonly data?: Array<MovieDataSchema>;
+
+    @Type(() => MetaSchema)
+    public readonly meta?: MetaSchema;
 }
 
 export class MovieDataSchema {
