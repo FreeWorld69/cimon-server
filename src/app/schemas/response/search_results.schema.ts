@@ -1,12 +1,8 @@
-import { Exclude, Expose, plainToInstance, Transform, Type } from "class-transformer";
-import { RatingSchema } from "../network/schemas/core/rating.schema";
-import { PostersSchema } from "../network/schemas/core/posters.schema";
-import { CoverSchema } from "../network/schemas/core/cover.schema";
-import { PostersModel } from "./core/poster.model";
-import { CoversModel } from "./core/covers.model";
+import { Exclude, Expose, plainToInstance, Transform} from "class-transformer";
+import { CoversSchema } from "./core/covers.schema";
 
 @Exclude()
-export class SearchResultsModel {
+export class SearchResultsSchema {
     @Expose()
     public readonly id?: number;
 
@@ -38,7 +34,7 @@ export class SearchResultsModel {
     public readonly poster?: string;
 
     @Expose({name: 'posters'})
-    @Transform(({obj}) => plainToInstance(PostersModel, obj?.posters?.data.s240))
+    @Transform(({obj}) => obj?.posters?.data?.s240)
     public readonly posterS240?: string;
 
     @Expose({name: 'isTvShow'})
@@ -53,6 +49,6 @@ export class SearchResultsModel {
     public readonly imdb?: number;
 
     @Expose()
-    @Transform(({obj}) => plainToInstance(CoversModel, obj?.covers?.data))
-    public readonly covers?: CoversModel;
+    @Transform(({obj}) => plainToInstance(CoversSchema, obj?.covers?.data))
+    public readonly covers?: CoversSchema;
 }

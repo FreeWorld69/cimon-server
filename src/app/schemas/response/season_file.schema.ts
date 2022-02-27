@@ -1,9 +1,9 @@
 import { Exclude, Expose, Type } from "class-transformer";
-import { CoversModel } from "./core/covers.model";
-import { MovieFilesModel } from "./core/movie_files.model";
+import { CoversSchema } from "./core/covers.schema";
+import { MovieFilesSchema } from "./core/movie_files.schema";
 
 @Exclude()
-export class SeasonFileModel {
+export class SeasonFileSchema {
     @Expose()
     public readonly episode?: number;
 
@@ -17,10 +17,10 @@ export class SeasonFileModel {
     public readonly rating?: any;
 
     @Expose()
-    @Type(() => CoversModel)
-    public readonly covers?: CoversModel;
+    @Type(() => CoversSchema)
+    public readonly covers?: CoversSchema;
 
     @Expose({name: 'files'})
-    @Type(() => MovieFilesModel)
-    public readonly movieFiles?: Array<MovieFilesModel>;
+    @Type(() => MovieFilesSchema)
+    public readonly movieFiles?: Array<MovieFilesSchema>;
 }

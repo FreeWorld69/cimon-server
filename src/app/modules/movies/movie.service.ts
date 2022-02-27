@@ -2,9 +2,9 @@ import { HttpStatus, Injectable } from "@nestjs/common";
 import { MovieGenres } from "../../commons/enums/movie_genres.enum";
 import { MoviesApiService } from "../../network/services/movie_api.service";
 import { plainToInstance } from "class-transformer";
-import { MovieModel } from "../../models/movie.model";
-import { SearchResultsModel } from "../../models/search_results.model";
-import { SeasonFileModel } from "../../models/season_file.model";
+import { MovieSchema } from "../../schemas/response/movie.schema";
+import { SearchResultsSchema } from "../../schemas/response/search_results.schema";
+import { SeasonFileSchema } from "../../schemas/response/season_file.schema";
 import { GenericException } from "../../commons/exceptions/generic.exception";
 import { ExceptionMessageCode } from "../../commons/enums/exception_message_code.enum";
 
@@ -19,7 +19,7 @@ export class MovieService {
         private readonly moviesApiService: MoviesApiService
     ) {}
 
-    async getMovies(page: number, genre: MovieGenres | null): Promise<MovieModel[]> {
+    async getMovies(page: number, genre: MovieGenres | null): Promise<MovieSchema[]> {
         const sortParam ='-upload_date';
         const filterInit = true;
         const filterSort = '-upload_date';
@@ -45,10 +45,10 @@ export class MovieService {
             null
         );
 
-        return plainToInstance(MovieModel, data, {enableCircularCheck: true});
+        return plainToInstance(MovieSchema, data, {enableCircularCheck: true});
     }
 
-    async getTopMovies(): Promise<MovieModel[]> {
+    async getTopMovies(): Promise<MovieSchema[]> {
         const page = 1;
         const perPage = 20;
         const filterWithActors = 3;
@@ -64,28 +64,28 @@ export class MovieService {
             String(filterWithDirectors)
         );
 
-        return plainToInstance(MovieModel, data, {enableCircularCheck: true});
+        return plainToInstance(MovieSchema, data, {enableCircularCheck: true});
     }
 
-    async getPopularMovies(): Promise<MovieModel[]> {
+    async getPopularMovies(): Promise<MovieSchema[]> {
         const { data } = await this.moviesApiService.getPopularMovies(
             String(MovieService.SOURCE)
         );
 
-        return plainToInstance(MovieModel, data, {enableCircularCheck: true});
+        return plainToInstance(MovieSchema, data, {enableCircularCheck: true});
     }
 
-    async getGeneralDetails(movieDetailsId: number): Promise<MovieModel> {
+    async getGeneralDetails(movieDetailsId: number): Promise<MovieSchema> {
         const { data } = await this.moviesApiService.getGenericMovieDetails(
             movieDetailsId,
             MovieService.SOURCE,
             '1'
         );
 
-        return plainToInstance(MovieModel, data, {enableCircularCheck: true});
+        return plainToInstance(MovieSchema, data, {enableCircularCheck: true});
     }
 
-    async getFoundMovie(keywords:string, page:number, perPage:number): Promise<SearchResultsModel[]> {
+    async getFoundMovie(keywords:string, page:number, perPage:number): Promise<SearchResultsSchema[]> {
         const { data } = await this.moviesApiService.search(
             String(page),
             String(perPage),
@@ -93,10 +93,10 @@ export class MovieService {
             keywords
         );
 
-        return plainToInstance(SearchResultsModel, data, {enableCircularCheck: true});
+        return plainToInstance(SearchResultsSchema, data, {enableCircularCheck: true});
     }
 
-    async getMovie(id: number): Promise<SeasonFileModel> {
+    async getMovie(id: number): Promise<SeasonFileSchema> {
         const defaultForMovie = 1;
 
         const { data } = await this.moviesApiService.getSeasonFiles(
@@ -109,16 +109,16 @@ export class MovieService {
             throw new GenericException(HttpStatus.NOT_FOUND, ExceptionMessageCode.INTERNAL_API_ERROR);
         }
 
-        return plainToInstance(SeasonFileModel, data[0], {enableCircularCheck: true});
+        return plainToInstance(SeasonFileSchema, data[0], {enableCircularCheck: true});
     }
 
-    async getSeries(id: number, season: number): Promise<SeasonFileModel[]> {
+    async getSeries(id: number, season: number): Promise<SeasonFileSchema[]> {
         const { data } = await this.moviesApiService.getSeasonFiles(
             id,
             season,
             MovieService.SOURCE
         );
 
-        return plainToInstance(SeasonFileModel, data, {enableCircularCheck: true});
+        return plainToInstance(SeasonFileSchema, data, {enableCircularCheck: true});
     }
 }

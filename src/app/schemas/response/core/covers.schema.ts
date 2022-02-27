@@ -1,7 +1,7 @@
 import { Exclude, Expose } from "class-transformer";
 
 @Exclude()
-export class CoversModel {
+export class CoversSchema {
     @Expose()
     public readonly s1920?: string;
 

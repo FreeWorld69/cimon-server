@@ -1,7 +1,7 @@
 import { Exclude, Expose } from "class-transformer";
 
 @Exclude()
-export class GenresModel {
+export class GenresSchema {
     @Expose()
     public readonly id?: number;
 

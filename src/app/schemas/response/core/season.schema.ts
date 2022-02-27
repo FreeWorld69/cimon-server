@@ -1,7 +1,7 @@
 import { Exclude, Expose } from "class-transformer";
 
 @Exclude()
-export class SeasonModel {
+export class SeasonSchema {
     @Expose()
     public readonly name?: string;
 

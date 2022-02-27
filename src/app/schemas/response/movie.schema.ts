@@ -1,13 +1,12 @@
 import { Exclude, Expose, plainToInstance, Transform, Type } from "class-transformer";
-import { PostersModel } from "./core/poster.model";
-import { CoversModel } from "./core/covers.model";
-import { CoverModel } from "./core/cover.model";
-import { PlotModel } from "./core/plot.model";
-import { GenresModel } from "./core/genre.model";
-import { SeasonModel } from "./core/season.model";
+import { CoversSchema } from "./core/covers.schema";
+import { CoverSchema } from "./core/cover.schema";
+import { PlotSchema } from "./core/plot.schema";
+import { GenresSchema } from "./core/genre.schema";
+import { SeasonSchema } from "./core/season.schema";
 
 @Exclude()
-export class MovieModel {
+export class MovieSchema {
     @Expose()
     public readonly id?: number;
 
@@ -47,26 +46,26 @@ export class MovieModel {
     public readonly poster?: string;
 
     @Expose({name: 'posters'})
-    @Transform(({obj}) => plainToInstance(PostersModel, obj?.posters?.data.s240))
+    @Transform(({obj}) => obj?.posters?.data?.s240)
     public readonly posterS240?: string;
 
     @Expose()
-    @Type(() => CoverModel)
-    public readonly cover?: CoverModel;
+    @Type(() => CoverSchema)
+    public readonly cover?: CoverSchema;
 
     @Expose()
-    @Transform(({obj}) => plainToInstance(CoversModel, obj?.covers?.data))
-    public readonly covers?: CoversModel;
+    @Transform(({obj}) => plainToInstance(CoversSchema, obj?.covers?.data))
+    public readonly covers?: CoversSchema;
 
     @Expose()
-    @Transform(({obj}) => plainToInstance(PlotModel, obj?.plots?.data ?? null))
-    public readonly plots?: Array<PlotModel>;
+    @Transform(({obj}) => plainToInstance(PlotSchema, obj?.plots?.data ?? null))
+    public readonly plots?: Array<PlotSchema>;
 
     @Expose()
-    @Transform(({obj}) => plainToInstance(GenresModel, obj?.genres?.data ?? null))
-    public readonly genres?: Array<GenresModel>;
+    @Transform(({obj}) => plainToInstance(GenresSchema, obj?.genres?.data ?? null))
+    public readonly genres?: Array<GenresSchema>;
 
     @Expose()
-    @Transform(({obj}) => plainToInstance(SeasonModel, obj?.seasons?.data ?? null))
-    public readonly seasons?: Array<SeasonModel>;
+    @Transform(({obj}) => plainToInstance(SeasonSchema, obj?.seasons?.data ?? null))
+    public readonly seasons?: Array<SeasonSchema>;
 }

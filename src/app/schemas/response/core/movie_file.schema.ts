@@ -1,7 +1,7 @@
 import { Exclude, Expose } from "class-transformer";
 
 @Exclude()
-export class MovieFileModel {
+export class MovieFileSchema {
     @Expose()
     public readonly id?: number;
 
