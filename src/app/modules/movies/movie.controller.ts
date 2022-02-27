@@ -1,7 +1,5 @@
 import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { MovieService } from "./movie.service";
-import { type } from "os";
-import session from "express-session";
 
 @Controller('/movies')
 export class MovieController {

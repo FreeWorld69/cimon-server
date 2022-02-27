@@ -1,12 +1,12 @@
-import { Injectable } from "@nestjs/common";
+import { HttpStatus, Injectable } from "@nestjs/common";
 import { MovieGenres } from "../../commons/enums/movie_genres.enum";
 import { MoviesApiService } from "../../network/services/movie_api.service";
-import { instanceToInstance, plainToClass, plainToInstance } from "class-transformer";
+import { plainToInstance } from "class-transformer";
 import { MovieModel } from "../../models/movie.model";
-import { MovieSchema } from "../../network/schemas/movie/movie.schema";
-import { SearchResultsSchema } from "../../network/schemas/seach/search_results.schema";
-import { SeasonFilesSchema } from "../../network/schemas/season/season_files.schema";
 import { SearchResultsModel } from "../../models/search_results.model";
+import { SeasonFileModel } from "../../models/season_file.model";
+import { GenericException } from "../../commons/exceptions/generic.exception";
+import { ExceptionMessageCode } from "../../commons/enums/exception_message_code.enum";
 
 @Injectable()
 export class MovieService {
@@ -76,47 +76,49 @@ export class MovieService {
     }
 
     async getGeneralDetails(movieDetailsId: number): Promise<MovieModel> {
-        const data = await this.moviesApiService.getGenericMovieDetails(
+        const { data } = await this.moviesApiService.getGenericMovieDetails(
             movieDetailsId,
             MovieService.SOURCE,
             '1'
         );
 
-        return plainToInstance(MovieModel, data.data, {enableCircularCheck: true});
+        return plainToInstance(MovieModel, data, {enableCircularCheck: true});
     }
 
-    async getFoundMovie(keywords:string, page:number, perPage:number) {
-        const data = await this.moviesApiService.search(
+    async getFoundMovie(keywords:string, page:number, perPage:number): Promise<SearchResultsModel[]> {
+        const { data } = await this.moviesApiService.search(
             String(page),
             String(perPage),
             MovieService.SOURCE,
             keywords
         );
 
-        // return data;
-        return plainToInstance(SearchResultsModel, data.data, {enableCircularCheck: true});
+        return plainToInstance(SearchResultsModel, data, {enableCircularCheck: true});
     }
 
-    getMovie(id: number): Promise<SeasonFilesSchema> {
+    async getMovie(id: number): Promise<SeasonFileModel> {
         const defaultForMovie = 1;
 
-        return this.moviesApiService.getSeasonFiles(
+        const { data } = await this.moviesApiService.getSeasonFiles(
             id,
             defaultForMovie,
             MovieService.SOURCE
         );
+
+        if (!data.length) {
+            throw new GenericException(HttpStatus.NOT_FOUND, ExceptionMessageCode.INTERNAL_API_ERROR);
+        }
+
+        return plainToInstance(SeasonFileModel, data[0], {enableCircularCheck: true});
     }
 
-    getSeries(id: number, season: number): Promise<SeasonFilesSchema> {
-        return this.moviesApiService.getSeasonFiles(
+    async getSeries(id: number, season: number): Promise<SeasonFileModel[]> {
+        const { data } = await this.moviesApiService.getSeasonFiles(
             id,
             season,
             MovieService.SOURCE
         );
+
+        return plainToInstance(SeasonFileModel, data, {enableCircularCheck: true});
     }
 }
-
-
-
-
-

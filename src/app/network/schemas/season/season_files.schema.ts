@@ -1,10 +1,10 @@
 import { Type } from "class-transformer";
-import { CoversSchema } from "../core/covers.schema";
+import { CoversDataSchema } from "../core/covers.schema";
 import { FilesSchema } from "./files.schema";
 
 export class SeasonFilesSchema {
     @Type(() => SeasonFileDataSchema)
-    public readonly data?: Array<SeasonFileDataSchema>
+    public readonly data?: Array<SeasonFileDataSchema>;
 }
 
 export class SeasonFileDataSchema {
@@ -14,6 +14,6 @@ export class SeasonFileDataSchema {
     public readonly description?: string;
     public readonly poster?: string;
     public readonly rating?: any;
-    @Type(() => CoversSchema) public readonly covers?: CoversSchema;
+    @Type(() => CoversDataSchema) public readonly covers?: CoversDataSchema;
     @Type(() => FilesSchema) public readonly files?: Array<FilesSchema>;
 }
