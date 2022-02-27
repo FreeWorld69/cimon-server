@@ -46,9 +46,9 @@ export class MovieModel {
     @Expose()
     public readonly poster?: string;
 
-    @Expose()
-    @Transform(({obj}) => plainToInstance(PostersModel, obj?.posters?.data))
-    public readonly posters?: PostersModel;
+    @Expose({name: 'posters'})
+    @Transform(({obj}) => plainToInstance(PostersModel, obj?.posters?.data.s240))
+    public readonly posterS240?: string;
 
     @Expose()
     @Type(() => CoverModel)

@@ -3,6 +3,7 @@ import { MetaSchema } from "../core/meta.schema";
 import { RatingSchema } from "../core/rating.schema";
 import { PostersSchema } from "../core/posters.schema";
 import { CoverSchema } from "../core/cover.schema";
+import { CoversSchema } from "../core/covers.schema";
 
 export class SearchResultsSchema {
     @Type(() => SearchResultDataSchema)
@@ -33,5 +34,5 @@ export class SearchResultDataSchema {
     public readonly weight?: number;
     @Type(() => RatingSchema) public readonly rating?: RatingSchema;
     @Type(() => PostersSchema) public readonly posters?: PostersSchema;
-    @Type(() => CoverSchema) public readonly covers?: CoverSchema;
+    @Type(() => CoversSchema) public readonly covers?: CoversSchema;
 }

@@ -6,6 +6,7 @@ import { MovieModel } from "../../models/movie.model";
 import { MovieSchema } from "../../network/schemas/movie/movie.schema";
 import { SearchResultsSchema } from "../../network/schemas/seach/search_results.schema";
 import { SeasonFilesSchema } from "../../network/schemas/season/season_files.schema";
+import { SearchResultsModel } from "../../models/search_results.model";
 
 @Injectable()
 export class MovieService {
@@ -84,13 +85,16 @@ export class MovieService {
         return plainToInstance(MovieModel, data.data, {enableCircularCheck: true});
     }
 
-    getFoundMovie(keywords:string, page:number, perPage:number): Promise<SearchResultsSchema> {
-        return this.moviesApiService.search(
+    async getFoundMovie(keywords:string, page:number, perPage:number) {
+        const data = await this.moviesApiService.search(
             String(page),
             String(perPage),
             MovieService.SOURCE,
             keywords
         );
+
+        // return data;
+        return plainToInstance(SearchResultsModel, data.data, {enableCircularCheck: true});
     }
 
     getMovie(id: number): Promise<SeasonFilesSchema> {
