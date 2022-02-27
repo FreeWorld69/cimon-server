@@ -1,4 +1,4 @@
-import { Exclude, Type } from "class-transformer";
+import { Exclude, Expose, Type } from "class-transformer";
 import { MetaSchema } from "../core/meta.schema";
 import { CoversSchema } from "../core/covers.schema";
 import { CoverSchema } from "../core/cover.schema";
@@ -15,17 +15,12 @@ import { CountriesSchema } from "./countries.schema";
 import { SeasonsSchema } from "./movie_seasons.schema";
 import { DirectorsSchema } from "./directors.schema";
 
-export class MovieSchema {
-    @Type(() => MovieDataSchema)
-    public readonly data?: Array<MovieDataSchema>;
-
-    @Type(() => MetaSchema)
-    public readonly meta?: MetaSchema;
-}
-
 export class MovieDataSchema {
     public readonly id?: number;
-    public readonly adjaraId?: number;
+
+    @Expose({name: 'adjaraId'})
+    public readonly movieDetailsId?: number;
+
     public readonly primaryName?: string;
     public readonly secondaryName?: string;
     public readonly tertiaryName?: string;
@@ -44,18 +39,31 @@ export class MovieDataSchema {
     public readonly parentalControlRate?: string;
     public readonly poster?: string;
     public readonly hasSubtitles?: boolean;
-    covers?: CoversSchema;
-    cover?: CoverSchema;
-    rating?: RatingSchema;
-    posters?: PostersSchema;
-    languages?: LanguagesSchema;
-    lastSeries?: LastSeriesSchema;
-    actors?: MovieActorsSchema;
-    plot?: PlotSchema;
-    plots?: PlotsSchema;
-    genres?: GenresSchema;
-    trailers?: TrailersSchema;
-    countries?: CountriesSchema;
-    seasons?: SeasonsSchema;
-    directors?: DirectorsSchema;
+    @Type(() => CoversSchema) public readonly covers?: CoversSchema;
+    @Type(() => CoverSchema) public readonly cover?: CoverSchema;
+    @Type(() => RatingSchema) public readonly rating?: RatingSchema;
+    @Type(() => PostersSchema) public readonly posters?: PostersSchema;
+    @Type(() => LanguagesSchema) public readonly languages?: LanguagesSchema;
+    @Type(() => LastSeriesSchema) public readonly lastSeries?: LastSeriesSchema;
+    @Type(() => MovieActorsSchema) public readonly actors?: MovieActorsSchema;
+    @Type(() =>PlotSchema ) public readonly plot?: PlotSchema;
+    @Type(() => PlotsSchema) public readonly plots?: PlotsSchema;
+    @Type(() => GenresSchema) public readonly genres?: GenresSchema;
+    @Type(() => TrailersSchema) public readonly trailers?: TrailersSchema;
+    @Type(() => CountriesSchema) public readonly countries?: CountriesSchema;
+    @Type(() => SeasonsSchema) public readonly seasons?: SeasonsSchema;
+    @Type(() => DirectorsSchema) public readonly directors?: DirectorsSchema;
+}
+
+export class MovieSchema {
+    @Type(() => MovieDataSchema)
+    public readonly data?: Array<MovieDataSchema>;
+
+    @Type(() => MetaSchema)
+    public readonly meta?: MetaSchema;
+}
+
+export class MovieDetailsSchema {
+    @Type(() => MovieDataSchema)
+    public readonly data?: MovieDataSchema;
 }

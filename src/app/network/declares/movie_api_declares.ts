@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { GET, HTTP, Interceptors, Param, Path } from "@yggdrasilts/axiosfit";
 import { NetworkInterceptor } from "../interceptor/network.interceptor";
-import { MovieSchema } from "../schemas/movie/movie.schema";
+import { MovieDetailsSchema, MovieSchema } from "../schemas/movie/movie.schema";
 import { SeasonFilesSchema } from "../schemas/season/season_files.schema";
 import { ActorsSchema } from "../schemas/actors/actors.schema";
 import { SearchResultsSchema } from "../schemas/seach/search_results.schema";
@@ -43,22 +43,22 @@ export class MovieApiDeclares {
         @Param('filters[with_directors]') filterWithDirectors?: string,
     ): Promise<MovieSchema> { return null; }
 
-    @GET('/movies/:movieId')
-    public getMovie(
-        @Path('movieId') movieId: number,
+    @GET('/movies/:movieDetailsId')
+    public getGenericMovieDetails(
+        @Path('movieDetailsId') movieDetailsId: number,
         @Param('source') source?: string,
         @Param('filters[with_directors]') filterWithDirectors?: string,
-    ): Promise<MovieSchema> { return null; }
+    ): Promise<MovieDetailsSchema> { return null; }
 
 
-    @GET('/movies/:movieId/season-files/:season')
+    @GET('/movies/:id/season-files/:season')
     public getSeasonFiles(
-        @Path('movieId') movieId: number,
+        @Path('id') id: number,
         @Path('season') season: number,
         @Param('source') source?: string,
     ): Promise<SeasonFilesSchema> { return null; }
 
-    @GET('/movies/{movieId}/persons')
+    @GET('/movies/:movieId/persons')
     public getActors(
         @Path('movieId') movieId: number,
         @Param('page') page?: string,

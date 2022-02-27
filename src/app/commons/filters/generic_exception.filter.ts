@@ -11,6 +11,8 @@ export class AllExceptionsFilter implements ExceptionFilter {
     constructor(private readonly httpAdapterHost: HttpAdapterHost) {}
 
     catch(exception: unknown, host: ArgumentsHost): void {
+        console.log(exception);
+
         const httpAdapter = this.httpAdapterHost?.httpAdapter;
         const ctx = host.switchToHttp();
         const request = ctx.getRequest() as Request;

@@ -1,5 +1,5 @@
 import { MovieApiDeclares } from "../declares/movie_api_declares";
-import { MovieSchema } from "../schemas/movie/movie.schema";
+import { MovieDetailsSchema, MovieSchema } from "../schemas/movie/movie.schema";
 import { plainToInstance } from "class-transformer";
 import { Axiosfit } from "@yggdrasilts/axiosfit";
 import { ActorsSchema } from "../schemas/actors/actors.schema";
@@ -63,18 +63,18 @@ export class MoviesApiService implements MovieApiDeclares {
         return plainToInstance(ActorsSchema, data);
     }
 
-    async getMovie(
-        movieId: number,
+    async getGenericMovieDetails(
+        movieDetailsId: number,
         source?: string,
         filterWithDirectors?: string
-    ): Promise<MovieSchema> {
-        const data = await MoviesApiService.moviesApiService.getActors(
-            movieId,
+    ): Promise<MovieDetailsSchema> {
+        const data = await MoviesApiService.moviesApiService.getGenericMovieDetails(
+            movieDetailsId,
             source,
             filterWithDirectors
         );
 
-        return plainToInstance(MovieSchema, data);
+        return plainToInstance(MovieDetailsSchema, data);
     }
 
     async getPopularMovies(
@@ -105,12 +105,12 @@ export class MoviesApiService implements MovieApiDeclares {
     }
 
     async getSeasonFiles(
-        movieId: number,
+        id: number,
         season: number,
         source?: string
     ): Promise<SeasonFilesSchema> {
         const data = await MoviesApiService.moviesApiService.getSeasonFiles(
-            movieId,
+            id,
             season,
             source
         );

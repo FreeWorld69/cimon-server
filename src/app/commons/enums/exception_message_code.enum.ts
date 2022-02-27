@@ -2,6 +2,7 @@ export enum ExceptionMessageCode {
     // generals
     INTERNAL_SERVER_ERROR = 'INTERNAL_SERVER_ERROR',
     GENERAL_ERROR = 'GENERAL_ERROR',
+    INTERNAL_API_ERROR = 'INTERNAL_API_ERROR',
 
     // token errors
     TOKEN_ERROR = 'TOKEN_ERROR',

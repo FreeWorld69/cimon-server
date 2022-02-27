@@ -1,4 +1,4 @@
-import { Type } from "class-transformer";
+import { Expose, Type } from "class-transformer";
 import { MetaSchema } from "../core/meta.schema";
 import { RatingSchema } from "../core/rating.schema";
 import { PostersSchema } from "../core/posters.schema";
@@ -14,8 +14,11 @@ export class SearchResultsSchema {
 
 export class SearchResultDataSchema {
     public readonly id?: number;
+
+    @Expose({name: 'adjaraId'})
+    public readonly movieDetailsId?: number;
+
     public readonly type?: string;
-    public readonly adjaraId?: number;
     public readonly originalName?: string;
     public readonly primaryName?: string;
     public readonly secondaryName?: string;
