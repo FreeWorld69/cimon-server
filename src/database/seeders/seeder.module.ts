@@ -7,7 +7,11 @@ import { SeederProvider } from './seeder.provider';
 import { TypeormConfig } from '../../configs/typeorm';
 
 @Module({
-  imports: [CommandModule, ConfigModule.forRoot({ isGlobal: true }), TypeOrmModule.forRoot(TypeormConfig.instance)],
+  imports: [
+    CommandModule,
+    ConfigModule.forRoot({ isGlobal: true }),
+    // TypeOrmModule.forRoot(TypeormConfig.instance)
+  ],
   controllers: [],
   providers: [SeederProvider, TestService],
 })
