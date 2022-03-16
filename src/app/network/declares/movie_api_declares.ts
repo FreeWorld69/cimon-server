@@ -6,7 +6,7 @@ import { SeasonFilesSchema } from '../schemas/season/season_files.schema';
 import { ActorsSchema } from '../schemas/actors/actors.schema';
 import { SearchResultsSchema } from '../schemas/seach/search_results.schema';
 
-@HTTP('', { usePromises: true, enableAxiosLogger: process.env.NODE_ENV === 'development' })
+@HTTP('', { usePromises: true })
 @Interceptors(NetworkInterceptor)
 export class MovieApiDeclares {
   @GET('/movies')
