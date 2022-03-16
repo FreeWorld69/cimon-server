@@ -15,7 +15,6 @@ import { MovieModule } from '../movies/movie.module';
     JwtModule.register({}),
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot(TypeormConfig.instance),
-
     MulterModule.register({ dest: path.join(__dirname, '../../../../', 'upload') }),
 
     // own modules

@@ -34,7 +34,6 @@ NestFactory.create<NestExpressApplication>(AppModule).then(async (app) => {
 });
 
 /**
- * //!!!!!! https://swiperjs.com/demos for awesome swiping experience
- * // TODO integrate session for cookies !!! (https://docs.nestjs.com/techniques/session)
- * // TODO replace axiosFit with ts-retrofit !!! (https://www.npmjs.com/package/ts-retrofit)
+ * !!!!!! https://swiperjs.com/demos for awesome swiping experience
+ * TODO integrate session for cookies !!! (https://docs.nestjs.com/techniques/session)
  */
