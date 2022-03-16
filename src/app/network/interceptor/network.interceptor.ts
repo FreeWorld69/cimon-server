@@ -29,7 +29,12 @@ export class NetworkInterceptor
 
   onError(error: yg.AxiosError): any {
     console.log('=======================');
-    console.log(error);
+    console.log(error.isAxiosError);
+    console.log(error.code);
+    console.log(error.message);
+    console.log(error.name);
+    console.log(error.stack);
+    console.log('=======================');
 
     throw new GenericException(
       HttpStatus.BAD_REQUEST,
@@ -40,7 +45,11 @@ export class NetworkInterceptor
 
   onResponse(response: yg.AxiosResponse): yg.AxiosResponse | Promise<yg.AxiosResponse> {
     console.log('=======================[]');
-    console.log(response);
+    console.log(response.status);
+    console.log(response.headers);
+    console.log(response.statusText);
+    console.log(response.config);
+    console.log('=======================[]');
 
     return response.data;
   }
