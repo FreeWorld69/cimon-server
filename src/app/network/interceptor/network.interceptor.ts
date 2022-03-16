@@ -21,13 +21,13 @@ export class NetworkInterceptor
     };
 
     console.log('----------------------------');
-    console.log(config);
+    console.log(config.headers);
     console.log('----------------------------');
 
     return config;
   }
 
-  onError(error: any): any {
+  onError(error: yg.AxiosError): any {
     console.log('=======================');
     console.log(error);
 
