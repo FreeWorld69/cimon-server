@@ -20,10 +20,17 @@ export class NetworkInterceptor
       referer: process.env.MOVIE_API_HEADER_REFERER,
     };
 
+    console.log('----------------------------');
+    console.log(config);
+    console.log('----------------------------');
+
     return config;
   }
 
-  onError(): any {
+  onError(error: any): any {
+    console.log('=======================');
+    console.log(error);
+
     throw new GenericException(
       HttpStatus.BAD_REQUEST,
       ExceptionMessageCode.INTERNAL_API_ERROR,
@@ -32,6 +39,9 @@ export class NetworkInterceptor
   }
 
   onResponse(response: yg.AxiosResponse): yg.AxiosResponse | Promise<yg.AxiosResponse> {
+    console.log('=======================[]');
+    console.log(response);
+
     return response.data;
   }
 }

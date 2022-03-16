@@ -11,7 +11,7 @@ import { ValidationPipe } from '@nestjs/common';
 NestFactory.create<NestExpressApplication>(AppModule).then(async (app) => {
   app.set('trust proxy', 1);
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
-  app.useGlobalFilters(new AllExceptionsFilter(app.get(HttpAdapterHost)));
+  //   app.useGlobalFilters(new AllExceptionsFilter(app.get(HttpAdapterHost)));
   app.use(session({ secret: 'my-secret', resave: false, saveUninitialized: false }));
   app.use(cookieParser());
   app.use(helmet());
